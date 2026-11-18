@@ -1,6 +1,6 @@
 ﻿// Lab 10
-// Student name:
-// Student number:
+// Student name: Jasmine Wang
+// Student number: 12140943
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,20 @@ Console.WriteLine("CPEN223 Lab 10");
 
 //Testing: Write some test cases to test well all methods you are to implement
 //         This is to demonstrates what test cases you have considered
-//TODO
+var data = new List<Sample>
+{
+    new("A", 4, 8),
+    new("B", 2, 4),
+    new("A", 0, 6),
+    new("A", 5, 9)
+};
+
+var result = WindowSelector.SelectWindow(data, "A", 0, 5);
+
+foreach (Sample s in result)
+{
+    Console.WriteLine($"{s.Sensor} {s.Minute} {s.Value}");
+}
 //end Testing code
 
 //Do not change the program skeleton: keep the record structs, the class name,
@@ -53,6 +66,18 @@ public static class WindowSelector
         int startInclusive,
         int endExclusive)
     {
-        throw new NotImplementedException();
+        List<Sample> result = new List<Sample>();
+
+foreach (Sample s in samples)
+{
+    if (s.Sensor == sensor &&
+        s.Minute >= startInclusive &&
+        s.Minute < endExclusive)
+    {
+        result.Add(s);
+    }
+}
+
+return result;
     }
 }
